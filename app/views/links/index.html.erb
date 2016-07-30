@@ -4,9 +4,15 @@
     <%= link_to link.title, link %>
     <small class="author">Submitted <%= time_ago_in_words(link.created_at) %> by <%= link.user.email %></small>
   </h2>
-  <% if logged_in? && !link.votes.where(user_id: current_user.id).exists? %>
-  <h4><%= button_to '+1', upvote_link_path(link)%></h4>
-  <% end %>
-  <small class="author"><%= link.votes.count %></small>
+  <div class ="btn-group">
+    <a class="btn btn-default btn-sm" href="<% link.url %>">Visit Link</a>
+    <% if logged_in? && !link.votes.where(user_id: current_user.id).exists? %>
+    <%= link_to upvote_link_path(link), method: :post, class: "btn btn-default btn-sm" do %>
+    <i class="glyphicon glyphicon-chevron-up"></i>
+    Upvote
+    <% end %>
+    <% end %>
+    <div class="row pull-right"><%= link.votes.count %></div>
+  </div>
 </div>
 <% end %>
