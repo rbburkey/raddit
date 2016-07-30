@@ -4,5 +4,9 @@
     <%= link_to link.title, link %>
     <small class="author">Submitted <%= time_ago_in_words(link.created_at) %> by <%= link.user.email %></small>
   </h2>
+  <% if logged_in? && !link.votes.where(user_id: current_user.id).exists? %>
+  <h4><%= button_to '+1', upvote_link_path(link)%></h4>
+  <% end %>
+  <small class="author"><%= link.votes.count %></small>
 </div>
 <% end %>
