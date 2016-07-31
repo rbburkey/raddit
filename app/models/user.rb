@@ -6,10 +6,4 @@ class User < ActiveRecord::Base
   has_many :links
   has_many :votes
 
-  def voted?(user)
-    @link = Link.find(params[:id])
-     if @link.votes.where(user_id: user.id) != nil
-       return true
-     end
-   end
 end
