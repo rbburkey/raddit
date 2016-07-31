@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
+# devise_for :users, :controllers => { registrations: 'registrations' }
 
   resources :comments
   root to: 'links#index'
 
-  devise_for :users
   resources :links
-
+  devise_for :users
   resources :links do
   member do
     post 'upvote'
