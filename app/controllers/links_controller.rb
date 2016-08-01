@@ -4,8 +4,15 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @links = Link.all
+    @page = (params[:page] || 1).to_i
+    offset = (@page - 1) * 10
+    @links = Link.
+             order(created_at: :desc).
+             offset(offset).
+             limit(10).
+             all
   end
+
 
   # GET /links/1
   # GET /links/1.json
