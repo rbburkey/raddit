@@ -1,4 +1,5 @@
-<% @links.each do |link| %>
+<% popular_links = @links.sort {|a,b| a.votes.count <=> b.votes.count } %>
+<% popular_links.reverse.each do |link| %>
 <div class="link row clearfix">
   <h2>
     <%= link_to link.title, link %>

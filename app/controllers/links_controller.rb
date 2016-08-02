@@ -12,7 +12,12 @@ class LinksController < ApplicationController
              limit(10).
              all
   end
-
+#
+# def vote_count
+# @links = Link.all
+# stinks = @links.sort {|a,b| a.votes.count <=> b.votes.count}
+# return stinks
+# end
 
   # GET /links/1
   # GET /links/1.json
